@@ -1,5 +1,5 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider")
-const infuraKey = "a6fbe259558b4c8baf936d949d3d310d"
+const infuraKey = process.env.INFURA_KEY
 const pk = [process.env.PK]
 
 module.exports = {
