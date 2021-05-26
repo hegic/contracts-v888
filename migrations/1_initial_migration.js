@@ -46,7 +46,7 @@ module.exports = async function (deployer, network, [account]) {
     await deployer.deploy(StakingWBTC, HEGIC.address, WBTC.address)
     await deployer.deploy(StakingETH, HEGIC.address)
 
-    await deployer.deploy(ETHOptions, PriceProvider.address, StakingETH.address, ETHPool.address)
+    await deployer.deploy(ETHOptions, PriceProvider.address, StakingETH.address)
     await deployer.deploy(
       WBTCOptions,
       BTCPriceProvider.address,
