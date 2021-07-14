@@ -46,7 +46,7 @@ module.exports = async function (deployer, network, [account]) {
     await deployer.deploy(StakingWBTC, HEGIC.address, WBTC.address)
     await deployer.deploy(StakingETH, HEGIC.address)
 
-    await deployer.deploy(ETHOptions, PriceProvider.address, StakingETH.address, ETHPool.address)
+    await deployer.deploy(ETHOptions, PriceProvider.address, StakingETH.address)
     await deployer.deploy(
       WBTCOptions,
       BTCPriceProvider.address,
@@ -96,6 +96,12 @@ module.exports = async function (deployer, network, [account]) {
     await wsr.notifyRewardAmount("4620000000000000000000000")
     await er.setRewardsRate(26229508196)
     await wr.setRewardsRate("8213552361396304000000")
+
+    const ethOptions = await ETHOptions.deployed()
+    await ethOptions.setImpliedVolRate(10500)
+
+    const ethPool = await ETHPool.at(ETHPoolAddress)
+    await ethPool.provide(10, {value: "5000000000000000000"})
     if (CONTRACTS_FILE) {
       const fs = require("fs")
       console.log("> Contracts writing: " + CONTRACTS_FILE)
